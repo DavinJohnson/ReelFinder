@@ -3,7 +3,7 @@
 IT 4403 term project. A single page app built with jQuery, AJAX and the TMDB API.
 
 **Team:** Davin Johnson, 
-**Live site:** [GitHub Pages URL]
+**Live site:** https://davinjohnson.github.io/ReelFinder/
 
 ## Run it locally
 1. Get a free TMDB API key at themoviedb.org (Settings → API).
