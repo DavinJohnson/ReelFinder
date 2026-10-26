@@ -1,41 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ReelFinder – Movie Discovery</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelFinder - Movie Discovery</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <header class="site-header">
-    <h1>ReelFinder</h1>
-    <p class="tagline">Find your next movie.</p>
-    <!-- TODO (UI/partner): nav for Home / Search / Watchlist views -->
-  </header>
-
-  <main id="main">
-    <!-- SPA view: Home / Discovery. Other views (search, details, watchlist) get added here
-         as sibling <section>s and are shown/hidden with jQuery. -->
-    <section id="view-home" class="view" aria-labelledby="popular-heading">
-      <h2 id="popular-heading">Popular Movies</h2>
-
-      <!-- Status area: aria-live so screen readers announce loading/errors -->
-      <div id="status" role="status" aria-live="polite"></div>
-
-      <ul id="movie-grid" class="movie-grid"></ul>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-          crossorigin="anonymous"></script>
-  <script src="js/config.js"></script>
-  <script src="js/app.js"></script>
+    <!-- Link for people using a keyboard to skip the header -->
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <!-- Header with website name and navigation -->
+    <header class="site-header">
+        <h1>ReelFinder</h1>
+        <p class="tagline">Find your next movie.</p>
+        <!-- Buttons change the view without reloading the page -->
+        <nav aria-label="Main navigation">
+            <button type="button" id="home-btn">Home</button>
+            <button type="button" id="search-btn">Search</button>
+            <button type="button" id="watchlist-btn">My Watchlist</button>
+        </nav>
+    </header>
+    <main id="main">
+        <!-- Home page with popular and top rated movies -->
+        <section id="view-home" class="view" aria-labelledby="popular-heading">
+            <h2 id="popular-heading">Popular Movies</h2>
+            <!-- Shows loading messages and API errors -->
+            <div id="status" role="status" aria-live="polite"></div>
+            <!-- Popular movies are added here by JavaScript -->
+            <ul id="movie-grid" class="movie-grid"></ul>
+            <!-- Top rated movies will be added here later -->
+            <h2 id="top-rated-heading">Top Rated Movies</h2>
+            <ul id="top-rated-grid" class="movie-grid"></ul>
+        </section>
+        <!-- Search page lets users find movies -->
+        <section id="view-search" class="view" aria-labelledby="search-heading" hidden>
+            <h2 id="search-heading">Search Movies</h2>
+            <p>Search for a movie or pick a genre to find something to watch.</p>
+            <!-- Search by movie title -->
+            <label for="movie-search">Movie Title:</label>
+            <input type="text" id="movie-search" placeholder="Enter movie title">
+            <!-- Genre options will come from TMDB -->
+            <label for="genre-select">Genre:</label>
+            <select id="genre-select">
+                <option value="">All Genres</option>
+            </select>
+            <!-- Options for sorting the movie results -->
+            <label for="sort-select">Sort By:</label>
+            <select id="sort-select">
+                <option value="popularity.desc">Most Popular</option>
+                <option value="vote_average.desc">Highest Rated</option>
+                <option value="primary_release_date.desc">Newest Movies</option>
+            </select>
+            <!-- Button to search for movies -->
+            <button type="button" id="movie-search-btn">Search</button>
+            <!-- Search results will show here -->
+            <div id="search-status" role="status" aria-live="polite"></div>
+            <ul id="search-grid" class="movie-grid"></ul>
+            <!-- Buttons for changing result pages -->
+            <div id="pagination">
+                <button type="button" id="prev-page">Previous</button>
+                <span id="page-number">Page 1</span>
+                <button type="button" id="next-page">Next</button>
+            </div>
+        </section>
+        <!-- Shows more information about the movie selected -->
+        <section id="view-details" class="view" aria-labelledby="details-heading" hidden>
+            <h2 id="details-heading">Movie Details</h2>
+            <!-- Movie poster and details will be added here -->
+            <div id="movie-details"></div>
+            <!-- Saves a movie to the users watchlist -->
+            <button type="button" id="add-watchlist-btn">Add to Watchlist</button>
+            <button type="button" id="back-btn">Back to Home</button>
+        </section>
+        <!-- Watchlist page for movies saved by the user -->
+        <section id="view-watchlist" class="view" aria-labelledby="watchlist-heading" hidden>
+            <h2 id="watchlist-heading">My Watchlist</h2>
+            <p>Movies you saved to watch later will show here.</p>
+            <!-- Movies are saved with localStorage -->
+            <ul id="watchlist-grid" class="movie-grid"></ul>
+            <!-- Message shown when no movies have been saved -->
+            <p id="empty-watchlist">You have not added any movies yet.</p>
+        </section>
+    </main>
+    <!-- Footer gives credit to TMDB -->
+    <footer class="site-footer">
+        <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+    </footer>
+    <!-- jQuery is used for AJAX and changing views -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <!-- Davins API configuration -->
+    <script src="js/config.js"></script>
+    <!-- Davins JavaScript for getting movie data -->
+    <script src="js/app.js"></script>
+    <!-- My JavaScript for navigation and watchlist -->
+    <script src="js/ui.js"></script>
 </body>
 </html>
