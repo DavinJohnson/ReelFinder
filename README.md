@@ -23,9 +23,11 @@ js/ui.js        navigation and watchlist using localStorage
 - [x] SPA shell + popular movies via AJAX
 - [x] Loading indicator + API error handling with retry
 - [x] Home, Search and Watchlist navigation
-- [x] Search interface + genre dropdown (API integration pending)
-- [ ] Sorting / pagination functionality
-- [ ] Movie details view functionality
+- [x] Search interface + genre dropdown
+- [x] Title search and genre filtering via TMDB
+- [x] Sorting / pagination functionality
+- [x] Top rated movies on Home
+- [x] Movie details view functionality
 - [x] Watchlist (localStorage)
 - [x] Responsive layout and mobile testing
 - [x] Keyboard navigation and accessibility review
